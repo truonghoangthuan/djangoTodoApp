@@ -4,11 +4,11 @@
       crossorigin="anonymous">
 
 <style>
-	body{
+	body {
 		background-color: #638CB8;
 	}
 
-	input{
+	input {
 		width: 100%;
 		padding: 12px 20px;
 		margin: 8px 0;
@@ -19,11 +19,11 @@
 	  color: #d3d3d3;
 	}
 
-	.submit{
+	.submit {
 		background-color: #6BA3E8;
 	}
 
-	.center-column{
+	.center-column {
 		width:600px;
 		margin: 20px auto;
 		padding:20px;
@@ -32,7 +32,7 @@
 		box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
 	}
 
-	.item-row{
+	.item-row {
 		background-color: #906abd;
 		margin: 10px;
 		padding: 20px;
@@ -42,7 +42,7 @@
 		box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75);
 	}
 
-	.btn-danger{
+	.btn-danger {
 		background-color: #ffae19;
 		border-color: #e59400;
 	}
@@ -52,13 +52,15 @@
     <form method="post" action="/">
         {% csrf_token %}
         {{form.title}}
-        <input type="submit" name="Create task">
+        <input class="btn btn-info" type="submit" name="Create task">
     </form>
 
+    <div class="todo-list"></div>
+
     {% for task in tasks %}
-        <div>
-            <a href="{% url 'update_task' task.id %}">Update</a>
-            <a href="{% url 'delete_task' task.id %}">Delete</a>
+        <div class="item-row">
+            <a class="btn btn-sm btn-info" href="{% url 'update_task' task.id %}">Update</a>
+            <a class="btn btn-sm btn-danger" href="{% url 'delete_task' task.id %}">Delete</a>
 
             {% if task.complete == True %}
                 <strike>{{task}}</strike>
@@ -68,4 +70,3 @@
         </div>
     {% endfor %}
 </div>
-
